@@ -54,4 +54,6 @@ dependencies {
     implementation 'org.asynchttpclient:async-http-client:2.12.1'
     // json-simple
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    // hash
+    implementation 'commons-codec:commons-codec:1.10'
 }

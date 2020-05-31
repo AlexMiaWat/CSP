@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -25,9 +26,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     CentralServicePortalManager cspMng;
     DrawerLayout drawer;
-    NavigationView navigationView;
+    public NavigationView navigationView;
     Toolbar toolbar;
     public WebView webView;
+    public TextView timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         webView = findViewById(R.id.webView);
         webView.loadUrl(provider);
+        timer = findViewById(R.id.timer);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view ->
