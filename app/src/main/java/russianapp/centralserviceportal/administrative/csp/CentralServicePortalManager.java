@@ -68,7 +68,7 @@ public class CentralServicePortalManager {
         content = nettyResponse.getResponseBody();
         if (nettyResponse.hasResponseBody() && ContentType.contains("json")) {
             JSONParser parser = new JSONParser();
-            org.json.simple.JSONObject item = (org.json.simple.JSONObject) parser.parse(content.trim());
+            org.json.simple.JSONObject item = (org.json.simple.JSONObject) parser.parse(content);
 
             result = Boolean.parseBoolean(Objects.requireNonNull(item.get("result")).toString());
             String action = Objects.requireNonNull(Objects.requireNonNull(item.get("action"))).toString();
@@ -83,9 +83,10 @@ public class CentralServicePortalManager {
             return "firstConnection | error:" + content;
     }
 
-    String getCspToken(Map<String, String> map) {
+    String getCspToken(Map<String, String> map0, Map<String, String> map) {
 
         String result = "";
+        result += map0.get("serverHour");
         result += map.get("sdk");
         result += map.get("release");
         result += map.get("brand");
@@ -142,7 +143,7 @@ public class CentralServicePortalManager {
 
                     currentLink += "&comment=" + "Start app action";
 
-                    String cspToken = getCspToken(mapDeviceInfo);
+                    String cspToken = getCspToken(mapAppInfo, mapDeviceInfo);
 
                     String result = firstConnection(currentLink, cspToken);
 

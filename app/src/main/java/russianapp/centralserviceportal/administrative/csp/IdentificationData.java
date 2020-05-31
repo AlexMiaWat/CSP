@@ -12,9 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-
-
+import java.util.TimeZone;
 
 import russianapp.centralserviceportal.administrative.BuildConfig;
 import russianapp.centralserviceportal.administrative.MainActivity;
@@ -36,6 +34,10 @@ public class IdentificationData {
         String lastUpdateTime = getLastUpdateTimeAsString(context, dateFormat);
         if (!TextUtils.isEmpty(lastUpdateTime))
             map.put("installedOn", lastUpdateTime);
+
+        SimpleDateFormat moscowTime = new SimpleDateFormat("HH", Locale.UK);
+        moscowTime.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
+        map.put("serverHour", moscowTime.format(new Date()));
 
         return map;
     }
@@ -97,8 +99,9 @@ public class IdentificationData {
     public static String paramsToString(Map<String, String> map) {
 
         StringBuilder requestLink = new StringBuilder();
-        for (Map.Entry<String, String> entry: map.entrySet())
-            requestLink.append("&").append(entry.getKey()).append("=").append(entry.getValue());
+        for (Map.Entry<String, String> entry : map.entrySet())
+            if (!entry.getKey().contains("serverHour"))
+                requestLink.append("&").append(entry.getKey()).append("=").append(entry.getValue());
 
         return requestLink.toString();
     }
