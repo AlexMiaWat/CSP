@@ -41,10 +41,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String application = "CSP";
         cspMng = new CentralServicePortalManager(this, provider, application);
 
+        // Web view
         webView = findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(provider);
         timer = findViewById(R.id.timer);
 
+        // Float btn
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view ->
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -91,21 +94,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menu.getItem(((NavigationMenu) menu).findItemIndex(item.getItemId())).setCheckable(true);
         menu.getItem(((NavigationMenu) menu).findItemIndex(item.getItemId())).setChecked(true);
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_firstConnection: {
                 cspMng.doServiceTask("firstConnection");
                 break;
 
-            } case R.id.nav_gallery: {
-
+            }
+            case R.id.nav_getData: {
+                cspMng.doServiceTask("getData");
                 break;
-            } default: {
+
+            }
+            case R.id.nav_putData: {
+                cspMng.doServiceTask("putData");
+                break;
+
+            }
+            default: {
                 // do nothing
             }
         }
 
         drawer.closeDrawer(GravityCompat.START);
-
-        return false;
+        return true;
     }
 }

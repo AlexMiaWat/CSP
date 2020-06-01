@@ -9,6 +9,14 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_firstConnection" />
         <item
+            android:id="@+id/nav_getData"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_getData" />
+        <item
+            android:id="@+id/nav_putData"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_putData" />
+        <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_send"
             android:title="@string/menu_home" />

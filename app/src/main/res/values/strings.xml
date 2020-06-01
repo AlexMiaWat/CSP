@@ -12,5 +12,8 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
-    <string name="menu_firstConnection">first Connection</string>
+    <string name="menu_firstConnection">First connection</string>
+    <string name="menu_getData">Get data</string>
+    <string name="menu_setData">Set data</string>
+    <string name="menu_putData">Put data</string>
 </resources>
